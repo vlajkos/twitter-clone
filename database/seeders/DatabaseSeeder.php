@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $user = new User(
             [
                 'name' => 'Vladimir',
+                'username' => 'vlajko',
                 'email' => 'vlajko1453@gmail.com',
                 'password' => Hash::make('.gaged99')
             ]
