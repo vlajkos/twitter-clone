@@ -16,7 +16,8 @@
     </div>
 
     <form action="/post" method="POST" class="max-w-xl flex flex-col items-end bg-white p-8 rounded-xl mx-auto">
-        <input type="text" name="post" id="post" class="w-full" placeholder="What is happening?!">
+        @csrf
+        <input type="text" name="body" id="body" class="w-full" placeholder="What is happening?!">
 
         <hr class="my-8 border-gray-300  w-full">
         <button type="submit"
