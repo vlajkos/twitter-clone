@@ -19,6 +19,7 @@ class PostController extends Controller
         $data['user_id'] = request()->user()->id;
 
         Post::create($data);
+        return redirect('/dashboard');
 
 
     }
