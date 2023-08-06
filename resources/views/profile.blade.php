@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <header>
+            <h2 class="font-black text-xl">{{ $tweets->first()->author->name }}</h2>
+            <p class="text-gray-500 mb-4">{{ '@' . $tweets->first()->author->username }}</p>
+            <time class="text-gray-500">Joined {{ request()->user()->created_at->format('F Y') }} </time>
+        </header>
     </x-slot>
     <section class="mt-10">
         <div class="max-w-sm mx-auto">

@@ -11,7 +11,9 @@ class TweetController extends Controller
 
     public function show(User $user)
     {
-        $tweets = Tweet::all()->where('user_id', $user->id);
+        $tweets = Tweet::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('profile', ['tweets' => $tweets]);
     }
 
