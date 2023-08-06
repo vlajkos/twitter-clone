@@ -27,6 +27,8 @@ class TweetSeeder extends Seeder
             return $tweet->save();
         }
 
+        $tweet = createTweet(1, now()->subDay());
+        $tweet = createTweet(1, now());
         $tweet = createTweet(1, '2023-07-05 18:56:41');
         $tweet = createTweet(1, '2023-07-09 18:56:41');
         $tweet = createTweet(1, '2023-07-04 18:56:41');
@@ -35,8 +37,16 @@ class TweetSeeder extends Seeder
         $tweet = createTweet(1, '2023-02-01 18:56:41');
         $tweet = createTweet(1, '2023-05-02 18:56:41');
         $tweet = createTweet(1, '2023-03-25 18:56:41');
+
+
+        $tweet = createTweet(2, now()->subDay());
         $tweet = createTweet(2, '2023-01-15 18:56:41');
         $tweet = createTweet(2, '2023-08-06 18:56:41');
         $tweet = createTweet(2, '2023-08-05 18:56:41');
+        $tweet = createTweet(2, '2023-01-15 18:56:41');
+        $tweet = createTweet(2, '2023-08-04 18:56:41');
+        $tweet = createTweet(2, '2023-08-03 18:56:41');
+        $tweet = createTweet(2, '2023-08-01 18:56:41');
+        $tweet = createTweet(2, '2023-08-01 14:56:41');
     }
 }
