@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+
         $user = new User(
             [
                 'name' => 'Vladimir',
@@ -30,5 +31,21 @@ class DatabaseSeeder extends Seeder
             ]
         );
         $user->save();
+        $user = new User(
+            [
+                'name' => 'Mirko',
+                'username' => 'mirko',
+                'email' => 'mirko995@gmail.com',
+                'password' => Hash::make('mirko995')
+            ]
+        );
+        $user->save();
+
+
+        $this->call([
+            TweetSeeder::class,
+
+        ]);
+
     }
 }
