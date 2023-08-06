@@ -40,12 +40,23 @@ class DatabaseSeeder extends Seeder
             ]
         );
         $user->save();
+        $user = new User(
+            [
+                'name' => 'Maja',
+                'username' => 'maja',
+                'email' => 'maja96@gmail.com',
+                'password' => Hash::make('mirko995')
+            ]
+        );
+        $user->save();
 
-
+        User::factory(40)->create();
         $this->call([
             TweetSeeder::class,
+            FollowerSeeder::class
 
         ]);
+
 
     }
 }

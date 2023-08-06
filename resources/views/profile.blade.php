@@ -1,9 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <header>
+        <header class="mx-auto max-w-sm">
             <h2 class="font-black text-xl">{{ $tweets->first()->author->name }}</h2>
             <p class="text-gray-500 mb-4">{{ '@' . $tweets->first()->author->username }}</p>
-            <time class="text-gray-500">Joined {{ request()->user()->created_at->format('F Y') }} </time>
+            <time class="text-gray-500 ">Joined {{ request()->user()->created_at->format('F Y') }} </time>
+            <div class="mt-4">
+                <a href="" class="mr-6"><b>{{ count(request()->user()->following) }}</b> <span
+                        class="text-gray-500">Following
+                    </span>
+                </a>
+                <a href="" class=""><b>{{ count(request()->user()->followers) }}</b> <span
+                        class="text-gray-500">Followers
+                    </span></a>
+            </div>
         </header>
     </x-slot>
     <section class="mt-10">
