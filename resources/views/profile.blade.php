@@ -1,15 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <header class="mx-auto max-w-sm">
-            <h2 class="font-black text-xl">{{ $tweets->first()->author->name }}</h2>
-            <p class="text-gray-500 mb-4">{{ '@' . $tweets->first()->author->username }}</p>
+        <header class="mx-auto max-w-sm relative">
+            <h2 class="font-black text-xl">{{ $user->name }}</h2>
+            <form action="/follow" method="POST" class="absolute right-0 top-0">
+                @csrf
+                <input type="hidden" value="{{ $user->id }}" name="following_id">
+                <button type="submit"
+                    class="px-5 py-2 bg-black rounded-full font-bold text-white hover:bg-slate-800">Follow</button>
+            </form>
+            <p class="text-gray-500 mb-4">{{ '@' . $user->username }}</p>
             <time class="text-gray-500 ">Joined {{ request()->user()->created_at->format('F Y') }} </time>
             <div class="mt-4">
-                <a href="" class="mr-6"><b>{{ count(request()->user()->following) }}</b> <span
+                <a href="" class="mr-6"><b>{{ count($user->following) }}</b> <span
                         class="text-gray-500">Following
                     </span>
                 </a>
-                <a href="" class=""><b>{{ count(request()->user()->followers) }}</b> <span
+                <a href="" class=""><b>{{ count($user->followers) }}</b> <span
                         class="text-gray-500">Followers
                     </span></a>
             </div>

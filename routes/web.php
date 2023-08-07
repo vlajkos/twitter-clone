@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/tweet', [TweetController::class, 'store']);
     Route::get('/{user:username}', [TweetController::class, 'show']);
+
+    Route::post('/follow', [FollowerController::class, 'store']);
 });

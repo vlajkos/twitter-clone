@@ -10,6 +10,7 @@ class Follower extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     public function follower(): BelongsTo
     {
         return $this->belongsTo(User::class);
