@@ -1,5 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
+
+
         <header class="mx-auto max-w-sm relative">
             <h2 class="font-black text-xl">{{ $user->name }}</h2>
             <form action="/follow" method="POST" class="absolute right-0 top-0">
@@ -20,35 +22,41 @@
                     </span></a>
             </div>
         </header>
+
     </x-slot>
     <section class="mt-10">
+        @if (count($tweets))
+            <div class="max-w-sm mx-auto ">
+                @foreach ($tweets as $tweet)
+                    <div class="relative">
+                        <a href="status/{{ $tweet->id }}" class="w-full h-full absolute z-0"></a>
+                        <header class="flex">
+                            <a href="/{{ $tweet->author->username }}" class="mr-4 relative hover:underline z-5">
+                                <h3 class="font-bold">{{ $tweet->author->name }}</h3>
+                            </a>
+                            <a href="/{{ $tweet->author->username }}" class="mr-4 relative z-5">
+                                {{ '@' . $tweet->author->username }}
+                            </a>
+                            @if ($tweet->created_at->diffInHours(now()) > 24)
+                                <time>{{ $tweet->created_at->format('F j') }}</time>
+                            @else
+                                <time>{{ $tweet->created_at->diffForHumans() }}</time>
+                            @endif
+                        </header>
 
-        <div class="max-w-sm mx-auto ">
-            @foreach ($tweets as $tweet)
-                <div class="relative">
-                    <a href="status/{{ $tweet->id }}" class="w-full h-full absolute z-0"></a>
-                    <header class="flex">
-                        <a href="/{{ $tweet->author->username }}" class="mr-4 relative hover:underline z-5">
-                            <h3 class="font-bold">{{ $tweet->author->name }}</h3>
-                        </a>
-                        <a href="/{{ $tweet->author->username }}" class="mr-4 relative z-5">
-                            {{ '@' . $tweet->author->username }}
-                        </a>
-                        @if ($tweet->created_at->diffInHours(now()) > 24)
-                            <time>{{ $tweet->created_at->format('F j') }}</time>
-                        @else
-                            <time>{{ $tweet->created_at->diffForHumans() }}</time>
-                        @endif
-                    </header>
+                        <div class="bg-green-300  mb-10">
 
-                    <div class="bg-green-300  mb-10">
+                            <p class="bg-green-300">{{ $tweet->body }}</p>
 
-                        <p class="bg-green-300">{{ $tweet->body }}</p>
+                        </div>
 
                     </div>
-
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @else
+            <div class="max-w-sm mx-auto text-gray-500 text-lg">{{ ucfirst($user->name) }} hasn't tweeted Yet!
+                Come back
+                later!</div>
+        @endif
     </section>
 </x-app-layout>
