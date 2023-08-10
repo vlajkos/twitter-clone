@@ -11,13 +11,4 @@ class Follower extends Model
     use HasFactory;
 
     protected $guarded = [];
-    public function follower(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function following(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 }

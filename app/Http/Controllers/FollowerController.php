@@ -3,11 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follower;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class FollowerController extends Controller
 {
+
+    public function listFollowers(User $user)
+    {
+
+        return view('followers', ['user' => $user, 'users' => $user->followers]);
+    }
+
+    public function listFollowing(User $user)
+    {
+
+        return view('followers', ['user' => $user, 'users' => $user->following]);
+    }
     public function store()
     {
 

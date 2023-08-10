@@ -52,12 +52,22 @@ class User extends Authenticatable
     }
 
 
-    public function followers(): HasMany
+    // public function followers(): HasMany
+    // {
+    //     return $this->HasMany(Follower::class, 'following_id');
+    // }
+    // public function following(): HasMany
+    // {
+    //     return $this->HasMany(Follower::class, 'follower_id');
+    // }
+    public function following()
     {
-        return $this->HasMany(Follower::class, 'following_id');
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id');
     }
-    public function following(): HasMany
+    public function followers()
     {
-        return $this->HasMany(Follower::class, 'follower_id');
+        return $this->belongsToMany(User::class, 'followers', 'following_id', 'follower_id');
     }
+
+
 }

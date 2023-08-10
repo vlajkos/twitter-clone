@@ -36,5 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/tweet', [TweetController::class, 'store']);
     Route::get('/{user:username}', [TweetController::class, 'show']);
 
+    Route::get('/{user:username}/followers', [FollowerController::class, 'listFollowers']);
+    Route::get('/{user:username}/following', [FollowerController::class, 'listFollowing']);
     Route::post('/follow', [FollowerController::class, 'store']);
 });

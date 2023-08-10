@@ -10,15 +10,18 @@
                 <button type="submit"
                     class="px-5 py-2 bg-black rounded-full font-bold text-white hover:bg-slate-800">Follow</button>
             </form>
-            <p class="text-gray-500 mb-4">{{ '@' . $user->username }}</p>
+            <p class="text-gray-500">{{ '@' . $user->username }}</p>
+            @if ($user->bio)
+                <p class="py-2">{{ $user->bio }}</p>
+            @endif
             <time class="text-gray-500 ">Joined {{ request()->user()->created_at->format('F Y') }} </time>
             <div class="mt-4">
-                <a href="" class="mr-6"><b>{{ count($user->following) }}</b> <span
-                        class="text-gray-500">Following
+                <a href="{{ $user->username . '/following' }}" class="mr-6"><b>{{ count($user->following) }}</b>
+                    <span class="text-gray-500">Following
                     </span>
                 </a>
-                <a href="" class=""><b>{{ count($user->followers) }}</b> <span
-                        class="text-gray-500">Followers
+                <a href="{{ $user->username . '/followers' }}" class=""><b>{{ count($user->followers) }}</b>
+                    <span class="text-gray-500">Followers
                     </span></a>
             </div>
         </header>
