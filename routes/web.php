@@ -39,4 +39,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/{user:username}/followers', [FollowerController::class, 'listFollowers']);
     Route::get('/{user:username}/following', [FollowerController::class, 'listFollowing']);
     Route::post('/follow', [FollowerController::class, 'store']);
+    Route::post('/unfollow', [FollowerController::class, 'destroy']);
 });

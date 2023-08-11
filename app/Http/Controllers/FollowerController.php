@@ -38,4 +38,15 @@ class FollowerController extends Controller
 
 
     }
+    public function destroy()
+    {
+        $follower_id = request()->user()->id;
+        $data = request()->validate(
+            [
+                'following_id' => ['required', 'integer', Rule::exists('followers', 'following_id')->where('follower_id', $follower_id)]
+            ]
+        );
+        Follower::where('following_id', $data['following_id'])->where('follower_id', $follower_id)->delete();
+        return back();
+    }
 }

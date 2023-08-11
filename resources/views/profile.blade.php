@@ -4,12 +4,22 @@
 
         <header class="mx-auto max-w-sm relative">
             <h2 class="font-black text-xl">{{ $user->name }}</h2>
-            <form action="/follow" method="POST" class="absolute right-0 top-0">
-                @csrf
-                <input type="hidden" value="{{ $user->id }}" name="following_id">
-                <button type="submit"
-                    class="px-5 py-2 bg-black rounded-full font-bold text-white hover:bg-slate-800">Follow</button>
-            </form>
+            @if ($user == request()->user())
+            @elseif (request()->user()->following->contains($user))
+                <form action="/unfollow" method="POST" class="absolute right-0 top-0">
+                    @csrf
+                    <input type="hidden" value="{{ $user->id }}" name="following_id">
+                    <button type="submit"
+                        class="px-5 py-2 bg-black rounded-full font-bold text-white hover:bg-slate-800">Unfollow</button>
+                </form>
+            @else
+                <form action="/follow" method="POST" class="absolute right-0 top-0">
+                    @csrf
+                    <input type="hidden" value="{{ $user->id }}" name="following_id">
+                    <button type="submit"
+                        class="px-5 py-2 bg-black rounded-full font-bold text-white hover:bg-slate-800">Follow</button>
+                </form>
+            @endif
             <p class="text-gray-500">{{ '@' . $user->username }}</p>
             @if ($user->bio)
                 <p class="py-2">{{ $user->bio }}</p>
@@ -47,9 +57,9 @@
                             @endif
                         </header>
 
-                        <div class="bg-green-300  mb-10">
+                        <div class="mb-10">
 
-                            <p class="bg-green-300">{{ $tweet->body }}</p>
+                            <p class="bg-green-100">{{ $tweet->body }}</p>
 
                         </div>
 
