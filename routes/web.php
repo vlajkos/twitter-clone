@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('{user:username}/status/{tweet}/likes', [LikeController::class, 'index'])->name('tweet.likes');
 
+    Route::post('/like', [LikeController::class, 'store']);
+
 
     Route::get('/{user:username}/followers', [FollowerController::class, 'listFollowers']);
     Route::get('/{user:username}/following', [FollowerController::class, 'listFollowing']);

@@ -62,7 +62,7 @@
                             <p class="bg-green-100">{{ $tweet->body }}</p>
 
                         </div>
-                        <x-tweet.menu :tweet=$tweet />
+                        <x-tweet.menu :tweet=$tweet :user=$user />
                     </div>
                 @endforeach
 
