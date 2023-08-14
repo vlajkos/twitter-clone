@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -34,10 +35,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/tweet', [TweetController::class, 'store']);
-    Route::get('/{user:username}', [TweetController::class, 'show']);
+    Route::get('/{user:username}', [TweetController::class, 'index']);
+    Route::get('{user:username}/status/{tweet}', [TweetController::class, 'show']);
+
+    Route::get('{user:username}/status/{tweet}/likes', [LikeController::class, 'index'])->name('tweet.likes');
+
 
     Route::get('/{user:username}/followers', [FollowerController::class, 'listFollowers']);
     Route::get('/{user:username}/following', [FollowerController::class, 'listFollowing']);
     Route::post('/follow', [FollowerController::class, 'store']);
     Route::post('/unfollow', [FollowerController::class, 'destroy']);
+
+
+
+
 });

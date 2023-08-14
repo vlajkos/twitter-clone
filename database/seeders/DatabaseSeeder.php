@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Like;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -57,6 +58,23 @@ class DatabaseSeeder extends Seeder
             FollowerSeeder::class
 
         ]);
+
+        $like = new Like([
+            'user_id' => 2,
+            'tweet_id' => 1
+        ]);
+        $like->save();
+        $like = new Like([
+            'user_id' => 3,
+            'tweet_id' => 1
+        ]);
+        $like->save();
+        $like = new Like([
+            'user_id' => 5,
+            'tweet_id' => 1
+        ]);
+        $like->save();
+
 
 
     }

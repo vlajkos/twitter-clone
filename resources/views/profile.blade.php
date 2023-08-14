@@ -38,33 +38,34 @@
 
     </x-slot>
     <section class="mt-10">
+        @if ($user->username == request()->user()->username)
+            <form action="/tweet" method="POST" class="max-w-sm flex flex-col items-end px-4 rounded-xl mx-auto">
+                @csrf
+                <input type="text" name="body" id="body" class="w-full border-0 bg-gray-100"
+                    placeholder="What is happening?!">
+                <button type="submit"
+                    class="rounded-full bg-blue-500 hover:bg-blue-700 text-white px-6 py-2  m-2 font-semibold">Post</button>
+                <hr class="my-6 border-gray-300  w-full">
+            </form>
+        @endif
         @if (count($tweets))
-            <div class="max-w-sm mx-auto ">
+            <div class="max-w-sm mx-auto">
                 @foreach ($tweets as $tweet)
-                    <div class="relative">
-                        <a href="status/{{ $tweet->id }}" class="w-full h-full absolute z-0"></a>
-                        <header class="flex">
-                            <a href="/{{ $tweet->author->username }}" class="mr-4 relative hover:underline z-5">
-                                <h3 class="font-bold">{{ $tweet->author->name }}</h3>
-                            </a>
-                            <a href="/{{ $tweet->author->username }}" class="mr-4 relative z-5">
-                                {{ '@' . $tweet->author->username }}
-                            </a>
-                            @if ($tweet->created_at->diffInHours(now()) > 24)
-                                <time>{{ $tweet->created_at->format('F j') }}</time>
-                            @else
-                                <time>{{ $tweet->created_at->diffForHumans() }}</time>
-                            @endif
-                        </header>
+                    <div class="relative mb-10">
+                        <a href="{{ $user->username }}/status/{{ $tweet->id }}"
+                            class="w-full h-full absolute z-0"></a>
 
-                        <div class="mb-10">
+                        <x-tweet.header :tweet="$tweet" />
+
+                        <div>
 
                             <p class="bg-green-100">{{ $tweet->body }}</p>
 
                         </div>
-
+                        <x-tweet.menu :tweet=$tweet />
                     </div>
                 @endforeach
+
             </div>
         @else
             <div class="max-w-sm mx-auto text-gray-500 text-lg">{{ ucfirst($user->name) }} hasn't tweeted Yet!
