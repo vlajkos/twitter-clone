@@ -11,7 +11,7 @@
         <a href="{{ '/' . $user->username . '/status/' . $tweet->id . '/likes' }}">{{ count($tweet->likes) }}</a>
     </form>
 
-    <form action="like" method="POST" class="flex">
+    <form action="/retweet" method="POST" class="flex">
         @csrf
         <button type="submit" class="w-4 mr-2">
             <img src="{{ asset('images/repost.png') }}" alt="" class="block">

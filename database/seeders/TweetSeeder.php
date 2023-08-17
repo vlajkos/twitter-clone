@@ -13,13 +13,14 @@ class TweetSeeder extends Seeder
      */
     public function run(): void
     {
-        function createTweet($user_id, $created_at)
+        function createTweet($user_id, $created_at, $tweet_id = null)
         {
             $body = fake()->paragraph();
 
             $tweet = new Tweet([
                 'user_id' => $user_id,
                 'body' => $body,
+                'tweet_id' => $tweet_id,
                 'created_at' => $created_at,
                 'updated_at' => $created_at
             ]);
@@ -39,6 +40,8 @@ class TweetSeeder extends Seeder
         $tweet = createTweet(1, '2023-03-25 18:56:41');
 
 
+
+
         $tweet = createTweet(2, now()->subDay());
         $tweet = createTweet(2, '2023-01-15 18:56:41');
         $tweet = createTweet(2, '2023-08-06 18:56:41');
@@ -48,5 +51,13 @@ class TweetSeeder extends Seeder
         $tweet = createTweet(2, '2023-08-03 18:56:41');
         $tweet = createTweet(2, '2023-08-01 18:56:41');
         $tweet = createTweet(2, '2023-08-01 14:56:41');
+
+
+
+        $tweet = createTweet(1, now()->subDay(), 16);
+        $tweet = createTweet(1, '2023-01-15 18:56:41', 17);
+
+        $tweet = createTweet(2, now()->subDay(), 1);
+        $tweet = createTweet(2, '2023-07-15 18:56:41', 2);
     }
 }

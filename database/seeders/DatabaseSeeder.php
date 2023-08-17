@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
                 'username' => 'vlajko',
                 'bio' => 'Laravel Developer',
                 'email' => 'vlajko1453@gmail.com',
-                'password' => Hash::make('.gaged99')
+                'password' => Hash::make('vlajko1453')
             ]
         );
         $user->save();

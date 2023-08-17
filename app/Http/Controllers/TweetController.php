@@ -27,7 +27,8 @@ class TweetController extends Controller
 
         $data = request()->validate(
             [
-                'body' => ['required', 'min:2', 'max:255']
+                'body' => ['required', 'min:2', 'max:255'],
+                'is_retweet' => ['required', 'boolean']
             ]
         );
 

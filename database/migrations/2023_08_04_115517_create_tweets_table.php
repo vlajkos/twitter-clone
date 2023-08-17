@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->text('body');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('tweet_id')->nullable()->constrained('tweets')->onDelete('set null');
             $table->text('media')->nullable();
             $table->timestamps();
         });
