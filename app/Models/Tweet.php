@@ -29,4 +29,9 @@ class Tweet extends Model
     {
         return $this->belongsTo(Tweet::class, 'tweet_id')->withDefault(); // Assuming 'Tweet' is the model name
     }
+
+    public function retweets()
+    {
+        return $this->hasMany(Tweet::class, 'tweet_id');
+    }
 }

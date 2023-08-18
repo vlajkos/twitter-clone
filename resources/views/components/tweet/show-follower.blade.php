@@ -11,8 +11,8 @@
 
 
 
-
-        @if ($loggedUser->following->contains($user))
+        @if ($loggedUser == $user)
+        @elseif($loggedUser->following->contains($user))
             <form action="/unfollow" method="POST" class="absolute z-10 right-0 top-0">
                 @csrf
                 <input type="hidden" value="{{ $user->id }}" name="following_id">

@@ -14,6 +14,7 @@ class TweetController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+
         return view('profile', ['tweets' => $tweets, 'user' => $user]);
     }
 

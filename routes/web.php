@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\RetweetController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/{user:username}', [TweetController::class, 'index']);
     Route::get('{user:username}/status/{tweet}', [TweetController::class, 'show']);
 
+    Route::post('/retweet', [RetweetController::class, 'store']);
+
     Route::get('{user:username}/status/{tweet}/likes', [LikeController::class, 'index'])->name('tweet.likes');
+    Route::get('{user:username}/status/{tweet}/retweets', [RetweetController::class, 'index'])->name('tweet.retweets');
+
 
     Route::post('/like', [LikeController::class, 'store']);
 

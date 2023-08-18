@@ -55,25 +55,12 @@ class DatabaseSeeder extends Seeder
         User::factory(40)->create();
         $this->call([
             TweetSeeder::class,
-            FollowerSeeder::class
+            FollowerSeeder::class,
+            LikeSeeder::class
 
         ]);
 
-        $like = new Like([
-            'user_id' => 2,
-            'tweet_id' => 1
-        ]);
-        $like->save();
-        $like = new Like([
-            'user_id' => 3,
-            'tweet_id' => 1
-        ]);
-        $like->save();
-        $like = new Like([
-            'user_id' => 5,
-            'tweet_id' => 1
-        ]);
-        $like->save();
+
 
 
 

@@ -8,14 +8,32 @@
         <button type="submit" class="w-4 mr-2">
             <img src="{{ asset('images/heart.png') }}" alt="" class="block">
         </button>
-        <a href="{{ '/' . $user->username . '/status/' . $tweet->id . '/likes' }}">{{ count($tweet->likes) }}</a>
+
+        <a href="{{ '/' . $user->username . '/status/' . $tweet->id . '/likes' }}">
+            @if ($tweet->tweet_id)
+                {{ count($tweet->originalTweet->likes) }}
+            @else
+                {{ count($tweet->likes) }}
+            @endif
+        </a>
     </form>
 
     <form action="/retweet" method="POST" class="flex">
         @csrf
+        <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+        <input type="hidden" name="body" value="{{ $tweet->body }}">
         <button type="submit" class="w-4 mr-2">
             <img src="{{ asset('images/repost.png') }}" alt="" class="block">
         </button>
-        <a href="">0</a>
+
+
+        <a href="">
+            @if ($tweet->tweet_id)
+                {{ count($tweet->originalTweet->retweets) }}
+            @else
+                {{ count($tweet->retweets) }}
+            @endif
+
+
     </form>
 </div>

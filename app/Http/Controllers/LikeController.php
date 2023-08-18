@@ -14,7 +14,8 @@ class LikeController extends Controller
     {
         return view('tweet.likes', [
             'user' => $user,
-            'users' => $tweet->likes->pluck('user')
+            'users' => $tweet->likes->pluck('user'),
+            'reaction' => 'likes'
         ]);
 
     }
