@@ -1,6 +1,20 @@
 @props(['tweet', 'user'])
 
 <div class="relative z-20 flex justify-around">
+
+    <div class="flex">
+        <button type="submit" class="w-4 mr-2">
+            <img src="{{ asset('images/comment.png') }}" alt="" class="block">
+        </button>
+        <a href="">
+            @if ($tweet->tweet_id)
+                {{ count($tweet->originalTweet->comments) }}
+            @else
+                {{ count($tweet->comments) }}
+            @endif
+        </a>
+    </div>
+
     <form action="/like" method="POST" class="flex">
         @csrf
         <input type="hidden" name="user_id" value="{{ request()->user()->id }}">
@@ -33,6 +47,7 @@
             @else
                 {{ count($tweet->retweets) }}
             @endif
+        </a>
 
 
     </form>
