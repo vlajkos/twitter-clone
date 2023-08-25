@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CommentLikeController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\RetweetController;
@@ -40,6 +42,13 @@ Route::middleware('auth')->group(function () {
     Route::get('{user:username}/status/{tweet}', [TweetController::class, 'show']);
 
     Route::post('/retweet', [RetweetController::class, 'store']);
+
+    //COMMENT
+    Route::get('{user:username}/status/{tweet}/comment/{comment}', [CommentController::class, 'show']);
+    Route::post('/comment', [CommentController::class, 'store']);
+    Route::post('/like_comment', [CommentLikeController::class, 'store']);
+    Route::get('{user:username}/status/{tweet}/comment/{comment}/likes', [CommentLikeController::class, 'index'])->name('comment.likes');
+    //
 
     Route::get('{user:username}/status/{tweet}/likes', [LikeController::class, 'index'])->name('tweet.likes');
     Route::get('{user:username}/status/{tweet}/retweets', [RetweetController::class, 'index'])->name('tweet.retweets');

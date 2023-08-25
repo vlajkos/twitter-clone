@@ -56,7 +56,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TweetSeeder::class,
             FollowerSeeder::class,
-            LikeSeeder::class
+            LikeSeeder::class,
+            CommentSeeder::class,
+            CommentLikeSeeder::class
 
         ]);
 

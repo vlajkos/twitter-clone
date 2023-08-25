@@ -34,4 +34,10 @@ class Tweet extends Model
     {
         return $this->hasMany(Tweet::class, 'tweet_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 }
