@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentLikeController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RetweetController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfileController;
@@ -37,6 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    //NOTIFICATIONS
+    Route::get('/notifications', [NotificationController::class, 'show']);
+    //NOTIFICATIONS
+
     Route::post('/tweet', [TweetController::class, 'store']);
     Route::get('/{user:username}', [TweetController::class, 'index']);
     Route::get('{user:username}/status/{tweet}', [TweetController::class, 'show']);
@@ -61,6 +66,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/{user:username}/following', [FollowerController::class, 'listFollowing']);
     Route::post('/follow', [FollowerController::class, 'store']);
     Route::post('/unfollow', [FollowerController::class, 'destroy']);
+
+
+
+
 
 
 

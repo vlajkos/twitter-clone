@@ -58,7 +58,8 @@ class DatabaseSeeder extends Seeder
             FollowerSeeder::class,
             LikeSeeder::class,
             CommentSeeder::class,
-            CommentLikeSeeder::class
+            CommentLikeSeeder::class,
+            NotificationSeeder::class
 
         ]);
 
