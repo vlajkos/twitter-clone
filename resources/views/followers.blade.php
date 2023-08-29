@@ -19,7 +19,7 @@
             </div>
             <hr>
             @php
-                $loggedUser = $user;
+                $loggedUser = request()->user();
             @endphp
             @foreach ($users as $user)
                 <x-tweet.show-follower :user=$user :loggedUser=$loggedUser />
