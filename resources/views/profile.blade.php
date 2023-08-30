@@ -87,7 +87,12 @@
                             </div>
                         @endif
 
-                        <x-tweet.menu :tweet=$tweet :user=$user />
+                        @if ($tweet->tweet_id)
+                            @php $originalTweet = $tweet->originalTweet @endphp
+                            <x-tweet.menu :tweet=$originalTweet :user=$user />
+                        @else
+                            <x-tweet.menu :tweet=$tweet :user=$user />
+                        @endif
                     </div>
                 @endforeach
 
