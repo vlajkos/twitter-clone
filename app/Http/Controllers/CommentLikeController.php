@@ -27,6 +27,11 @@ class CommentLikeController extends Controller
     {
 
         commentLike::create(request()->all());
+        $comment = Comment::find(request()->comment_id);
+        $author = $comment->author->id;
+        $user = request()->user_id;
+        if ($author != $user)
+            NotificationController::store($user, $author, 'comment_like', $comment->body);
         return back();
 
     }

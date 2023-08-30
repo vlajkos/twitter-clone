@@ -19,6 +19,12 @@ class CommentController extends Controller
             'user_id' => $request->user()->id,
         ]);
         $comment->save();
+        $sender_id = request()->user()->id;
+        $tweet = Tweet::findOrFail($comment->tweet_id);
+        $user_id = $tweet->author->id;
+        if ($user_id != $sender_id)
+            NotificationController::store($sender_id, $user_id, 'comment', $comment->body);
+
         return back();
 
     }

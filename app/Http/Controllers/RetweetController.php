@@ -31,6 +31,11 @@ class RetweetController extends Controller
         $data['user_id'] = request()->user()->id;
 
         Tweet::create($data);
+        $sender_id = $data['user_id'];
+        $tweet = Tweet::findOrFail($data['tweet_id']);
+        $user_id = $tweet->author->id;
+        if ($user_id != $sender_id)
+            NotificationController::store($sender_id, $user_id, 'retweet', $tweet->body);
         return back();
 
 

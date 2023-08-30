@@ -23,8 +23,18 @@ class LikeController extends Controller
     public function store(LikeStoreRequest $request)
     {
 
+
+
+
         Like::create($request->all());
+        $tweet = Tweet::find($request->tweet_id);
+        $author = $tweet->author->id;
+        $user = $request->user_id;
+        if ($author != $user)
+            NotificationController::store($user, $author, 'like', $tweet->body);
         return back();
+
+
 
     }
 }
