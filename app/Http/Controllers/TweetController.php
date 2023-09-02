@@ -39,4 +39,14 @@ class TweetController extends Controller
 
 
     }
+
+    public function indexHome()
+    {
+        $loggedUser = request()->user();
+        $friendIds = $loggedUser->following->pluck('id');
+        $tweetsFromFriends = Tweet::whereIn('user_id', $friendIds)
+            ->orderBy('created_at', 'desc') // Chronological order, newest first
+            ->get();
+        return view('home', ['tweets' => $tweetsFromFriends]);
+    }
 }
