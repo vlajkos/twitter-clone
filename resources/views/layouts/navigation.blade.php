@@ -19,6 +19,10 @@
                     <x-nav-link href="{{ '/notifications' }}" :active="request()->routeIs('dashboard')">
                         {{ __('Notifications') }}
                     </x-nav-link>
+
+                    <x-nav-link href="{{ '/home' }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Home') }}
+                    </x-nav-link>
                 </div>
             </div>
 
