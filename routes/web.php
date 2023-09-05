@@ -20,10 +20,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
