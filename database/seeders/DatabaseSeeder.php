@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Vladimir',
                 'username' => 'vlajko',
                 'bio' => 'Laravel Developer',
+                'image' => 'default/vlada.png',
                 'email' => 'vlajko1453@gmail.com',
                 'password' => Hash::make('vlajko1453')
             ]
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Mirko',
                 'username' => 'mirko',
+                'image' => 'default/mirko.png',
                 'email' => 'mirko995@gmail.com',
                 'password' => Hash::make('mirko995')
             ]
@@ -46,6 +48,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Maja',
                 'username' => 'maja',
+                'image' => 'default/maja.jpg',
                 'email' => 'maja96@gmail.com',
                 'password' => Hash::make('maja1996')
             ]

@@ -27,9 +27,7 @@ Route::middleware('guest')->group(function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 
@@ -37,12 +35,13 @@ require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/home', [TweetController::class, 'indexHome']);
+    Route::get('/home', [TweetController::class, 'indexHome'])->name('home');
 
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/picture', [ProfileController::class, 'updatePicture'])->name('picture.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //NOTIFICATIONS
@@ -73,6 +72,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/{user:username}/following', [FollowerController::class, 'listFollowing']);
     Route::post('/follow', [FollowerController::class, 'store']);
     Route::post('/unfollow', [FollowerController::class, 'destroy']);
+
+
+    Route::get("tweets/search", [TweetController::class, 'search'])->name('tweets.search');
 
 
 

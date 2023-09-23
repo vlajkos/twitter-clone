@@ -5,7 +5,7 @@
             <a href="{{ $tweet->originalTweet->author->username }}/status/{{ $tweet->originalTweet->id }}"
                 class="w-full h-full absolute z-0"></a>
         @else
-            <a href="{{ $user->username }}/status/{{ $tweet->id }}" class="w-full h-full absolute z-0"></a>
+            <a href="/{{ $user->username }}/status/{{ $tweet->id }}" class="w-full h-full absolute z-0"></a>
         @endif
         @if ($tweet->tweet_id)
             <div class="flex">

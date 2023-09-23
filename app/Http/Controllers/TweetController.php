@@ -49,4 +49,14 @@ class TweetController extends Controller
             ->get();
         return view('home', ['tweets' => $tweetsFromFriends]);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $tweets = Tweet::where('body', 'like', "%$query%")
+            ->whereNull('tweet_id') // Exclude tweets where 'tweet_id' is not null
+            ->orderBy('created_at', 'desc') // Sort by 'created_at' column in descending order
+            ->get();
+        return view('tweet.search-results', compact('tweets', 'query'));
+    }
 }

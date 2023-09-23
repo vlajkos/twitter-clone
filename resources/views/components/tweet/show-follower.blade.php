@@ -2,9 +2,14 @@
 <div class="relative hover:bg-gray-200 py-6">
 
     <header class="relative flex ">
-        <img class="self-start h-8 w-8 rounded-full mr-4 mt-2"src="https://cdn-icons-png.flaticon.com/512/21/21104.png"
-            alt="">
-        <div class="flex flex-col">
+        @if ($user->image)
+            <div class="self-start rounded-full h-14 w-14 mt-2 overflow-hidden bg-cover bg-center"
+                style="background-image: url('/storage/images/{{ $user->image }}');"></div>
+        @else
+            <img class="self-start h-14 w-14 rounded-full mt-2" src="https://cdn-icons-png.flaticon.com/512/21/21104.png"
+                alt="">
+        @endif
+        <div class="flex flex-col ml-2">
             <p class="font-bold">{{ $user->name }} </p>
             <p href="" class="text-gray-500">{{ '@' . $user->username }}</p>
         </div>
@@ -28,6 +33,6 @@
             </form>
         @endif
     </header>
-    <p class="ml-12">{{ $user->bio }}</p>
+    <p class="ml-16">{{ $user->bio }}</p>
     <a href="/{{ $user->username }}" class="absolute h-full w-full top-0"></a>
 </div>

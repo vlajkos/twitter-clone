@@ -33,6 +33,7 @@ class FollowerSeeder extends Seeder
         $following = createFollower(1, 16);
 
         $following = createFollower(2, 1);
+        $following = createFollower(3, 1);
         $following = createFollower(23, 1);
         $following = createFollower(29, 1);
         $following = createFollower(30, 1);
