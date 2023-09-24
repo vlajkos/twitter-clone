@@ -5,7 +5,7 @@
         <header class="mx-auto max-w-sm relative">
 
             <div class="flex">
-                <x-profile-photo :user=$user class="mr-2" />
+                <x-profile-photo :user=$user class="mr-2" customClass="w-12 h-12" />
                 <div>
                     <h2 class="font-black text-xl">{{ $user->name }}</h2>
                     @if ($user == request()->user())
@@ -52,7 +52,7 @@
             <x-tweet.create />
         @endif
         @if (count($tweets))
-            <div class="max-w-sm mx-auto">
+            <div class="max-w-sm mx-auto relative">
                 @foreach ($tweets as $tweet)
                     @php $user = $tweet->author @endphp
                     <x-tweet.show :tweet=$tweet :user=$user />

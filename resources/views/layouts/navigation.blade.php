@@ -63,7 +63,7 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
-                <x-profile-photo :user="Auth::user()" />
+                <x-profile-photo :user="Auth::user()" customClass="w-12 h-12" />
             </div>
 
             <!-- Hamburger -->

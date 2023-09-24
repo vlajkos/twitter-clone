@@ -1,6 +1,13 @@
 @props(['tweet', 'user'])
-<section class="mt-10">
-    <div class="relative mb-10">
+<section class="mt-4 flex w-full">
+    @if ($tweet->tweet_id)
+        @php $author = $tweet->originalTweet->author @endphp
+        <x-profile-photo :user=$author class="mt-8 mr-2" customClass="w-12 h-12" />
+    @else
+        <x-profile-photo :user=$user class="mt-1 mr-2" customClass="w-12 h-12" />
+    @endif
+
+    <div class="relative mb-2 w-full">
         @if ($tweet->tweet_id)
             <a href="{{ $tweet->originalTweet->author->username }}/status/{{ $tweet->originalTweet->id }}"
                 class="w-full h-full absolute z-0"></a>
@@ -26,11 +33,11 @@
 
         @if ($tweet->tweet_id)
             <div class='border-2 border-black'>
-                <p class="bg-green-100">{{ $tweet->originalTweet->body }}</p>
+                <p class="bg-green-100 break-words">{{ $tweet->originalTweet->body }}</p>
             </div>
         @else
-            <div>
-                <p class="bg-green-100">{{ $tweet->body }}</p>
+            <div class="">
+                <p class="bg-green-100 break-words">{{ $tweet->body }}</p>
             </div>
         @endif
 
