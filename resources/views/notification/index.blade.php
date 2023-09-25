@@ -4,7 +4,10 @@
             @foreach ($notifications as $notification)
                 <div class="pb-4 flex">
 
-                    @php $action = $notification->action @endphp
+                    @php
+                        $sender = $notification->sender;
+                        $action = $notification->action;
+                    @endphp
                     @if ($action == 'like' || $action == 'comment_like')
                         <img src="{{ asset('images/heart.png') }}" alt="" class="self-start h-6 w-6  mr-2 mt-3">
                     @elseif($action == 'comment')
@@ -16,8 +19,9 @@
                     @endif
 
                     <div>
-                        <div class=" flex flex-row mb-2"><img src="{{ asset('images/user.png') }}" alt=""
-                                class="self-start h-8 w-8 rounded-full mr-4 mt-2">
+                        <div class=" flex flex-row mb-2">
+
+                            <x-profile-photo :user=$sender customClass="w-8 h-8 mt-1 mr-1" />
                             <time class="self-end">{{ $notification->created_at->diffForHumans() }}</time>
                         </div>
 

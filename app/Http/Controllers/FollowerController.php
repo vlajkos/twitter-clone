@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Follower;
 use App\Models\Notification;
 use App\Models\User;
+use App\Rules\DifferentFollower;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -30,7 +31,13 @@ class FollowerController extends Controller
 
         $data = request()->validate(
             [
-                'following_id' => ['required', 'integer', 'exists:users,id', Rule::unique('followers')->where('follower_id', $follower_id)]
+                'following_id' => [
+                    'required',
+                    'integer',
+                    'exists:users,id',
+                    new DifferentFollower($follower_id),
+                    Rule::unique('followers')->where('follower_id', $follower_id)
+                ]
             ]
         );
 

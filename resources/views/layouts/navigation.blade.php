@@ -19,6 +19,9 @@
                     <x-nav-link href="{{ '/notifications' }}">
                         {{ __('Notifications') }}
                     </x-nav-link>
+                    <x-nav-link href="/profile">
+                        {{ __('Settings') }}
+                    </x-nav-link>
 
                     {{-- <x-nav-link href="{{ '/home' }}">
                         {{ __('Home') }}
