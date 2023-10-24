@@ -44,6 +44,11 @@ class ProfileController extends Controller
         $path = $request->file('img')->store('public/images');
         $path = str_replace('public/images/', '', $path);
         $user = $request->user();
+        $deletePath = public_path() . '/storage/images/' . $user->image;
+        if($user->image && file_exists($deletePath)) {
+            //So it doesn't delete default seeded pictures
+            if(!str_contains($deletePath,'default'))  unlink($deletePath);
+        }
         $user->image = $path;
         $user->save();
         return Redirect::route('profile.edit')->with('status', 'picture-updated')->with('path', $path);
