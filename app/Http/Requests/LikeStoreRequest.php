@@ -23,12 +23,11 @@ class LikeStoreRequest extends FormRequest
     public function rules(): array
     {
         $userId = $this->input('user_id');
-
         return [
             'user_id' => ['required', 'exists:users,id'],
             'tweet_id' => [
                 'required',
-                'exists:users,id',
+                'exists:tweets,id',
                 Rule::unique('likes')->where(function ($query) use ($userId) {
                     $query->where('user_id', $userId);
                 })
