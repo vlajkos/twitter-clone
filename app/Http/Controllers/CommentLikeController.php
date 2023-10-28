@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LikeStoreRequest;
+use App\Http\Requests\CommentLikeStoreRequest;
 use Illuminate\Http\Request;
 use App\Models\commentLike;
 use App\Models\Comment;
@@ -23,10 +24,10 @@ class CommentLikeController extends Controller
 
     }
 
-    public function store()
+    public function store(CommentLikeStoreRequest $request)
     {
 
-        commentLike::create(request()->all());
+        commentLike::create($request->all());
         $comment = Comment::find(request()->comment_id);
         $author = $comment->author->id;
         $user = request()->user_id;
