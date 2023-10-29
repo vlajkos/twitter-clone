@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\RepostRequest;
 
 class RetweetController extends Controller
 {
@@ -18,18 +19,11 @@ class RetweetController extends Controller
         ]);
 
     }
-    public function store()
+    public function store(RepostRequest $request)
     {
 
-        $data = request()->validate(
-            [
-                'body' => ['required', 'min:2', 'max:255'],
-                'tweet_id' => ['required', 'exists:tweets,id']
-            ]
-        );
-
+        $data = $request->all();
         $data['user_id'] = request()->user()->id;
-
         Tweet::create($data);
         $sender_id = $data['user_id'];
         $tweet = Tweet::findOrFail($data['tweet_id']);
