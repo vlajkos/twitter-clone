@@ -1,5 +1,4 @@
 @props(['tweet', 'user'])
-
 <div class="relative z-20 flex justify-around">
 
     <div class="flex">
@@ -20,7 +19,12 @@
         <input type="hidden" name="user_id" value="{{ request()->user()->id }}">
         <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
         <button type="submit" class="w-4 mr-2">
-            <img src="{{ asset('images/heart.png') }}" alt="" class="block">
+            @if ($tweet['isLikedByCurrentUser'])
+                <img src="{{ asset('images/heart-full.png') }}" alt="" class="block">
+            @else
+                <img src="{{ asset('images/heart.png') }}" alt="" class="block">
+            @endif
+
         </button>
 
         <a href="{{ '/' . $user->username . '/status/' . $tweet->id . '/likes' }}">

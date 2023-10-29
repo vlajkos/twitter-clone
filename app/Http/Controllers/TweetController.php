@@ -10,12 +10,20 @@ class TweetController extends Controller
 {
     public function index(User $user)
     {
+        // Get the authenticated user
+        $currentUser = auth()->user();
+    
+        // Retrieve the tweets for the specified user
         $tweets = Tweet::where('user_id', $user->id)
             ->orderBy('created_at', 'desc')
             ->get();
-
-
-        return view('profile', ['tweets' => $tweets, 'user' => $user]);
+    
+        // Check if each tweet is liked by the authenticated user
+        $tweetsWithLikeStatus = $tweets->map(function ($tweet) use ($currentUser) {
+            $tweet['isLikedByCurrentUser'] = $currentUser ? $tweet->likedByUser($currentUser) : false;
+            return $tweet;
+        });
+        return view('profile', ['tweets' => $tweetsWithLikeStatus, 'user' => $user]);
     }
 
     public function show(User $user, Tweet $tweet)
