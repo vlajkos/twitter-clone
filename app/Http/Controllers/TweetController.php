@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tweet;
+use App\Models\Quote;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,10 @@ class TweetController extends Controller
         $tweets = Tweet::where('user_id', $user->id)
             ->orderBy('created_at', 'desc')
             ->get();
-    
+        $quotes = Quote::where('user_id', $user->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+        $tweets = $tweets->merge($quotes)->sortByDesc('created_at');
         // Check if each tweet is liked by the authenticated user
         $tweetsWithLikeStatus = $tweets->map(function ($tweet) use ($currentUser) {
             $tweet['isLikedByCurrentUser'] = $currentUser ? $tweet->likedByUser($currentUser) : false;

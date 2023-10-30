@@ -14,6 +14,10 @@ class Comment extends Model
     {
         return $this->belongsTo(Tweet::class);
     }
+    public function quote()
+    {
+        return $this->belongsTo(Quote::class);
+    }
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

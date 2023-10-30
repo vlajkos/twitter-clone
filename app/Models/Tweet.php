@@ -35,4 +35,9 @@ class Tweet extends Model
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 
+
+    public function quotes(): HasMany {
+        return $this->hasMany(Quote::class);
+    }
+
 }

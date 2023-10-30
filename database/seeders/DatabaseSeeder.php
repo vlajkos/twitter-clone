@@ -58,6 +58,7 @@ class DatabaseSeeder extends Seeder
         User::factory(40)->create();
         $this->call([
             TweetSeeder::class,
+            QuoteSeeder::class,
             FollowerSeeder::class,
             LikeSeeder::class,
             CommentSeeder::class,

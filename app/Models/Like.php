@@ -20,4 +20,9 @@ class Like extends Model
     {
         return $this->belongsTo(Tweet::class);
     }
+
+    public function quote()
+    {
+        return $this->belongsTo(Quote::class);
+    }
 }
