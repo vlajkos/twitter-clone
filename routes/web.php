@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/{user:username}', [TweetController::class, 'index']);
     Route::get('{user:username}/status/{tweet}', [TweetController::class, 'show']);
 
-    Route::post('/retweet', [RetweetController::class, 'store']);
+   
 
     //COMMENT
     Route::get('{user:username}/status/{tweet}/comment/{comment}', [CommentController::class, 'show']);
@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
     //
 
     Route::get('{user:username}/status/{tweet}/likes', [LikeController::class, 'index'])->name('tweet.likes');
-    Route::get('{user:username}/status/{tweet}/retweets', [RetweetController::class, 'index'])->name('tweet.retweets');
+   
 
 
     Route::post('/like', [LikeController::class, 'store']);

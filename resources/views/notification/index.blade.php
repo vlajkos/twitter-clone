@@ -33,8 +33,6 @@
                                 liked your comment
                             @elseif($action == 'comment')
                                 commented your tweet
-                            @elseif($action == 'retweet')
-                                reposted your tweet
                             @elseif($action == 'follow')
                                 is now following you
                             @endif

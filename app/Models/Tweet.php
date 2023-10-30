@@ -25,16 +25,6 @@ class Tweet extends Model
         return $this->hasMany(Like::class);
     }
 
-    public function originalTweet(): BelongsTo
-    {
-        return $this->belongsTo(Tweet::class, 'tweet_id')->withDefault(); // Assuming 'Tweet' is the model name
-    }
-
-    public function retweets()
-    {
-        return $this->hasMany(Tweet::class, 'tweet_id');
-    }
-
     public function comments()
     {
         return $this->hasMany(Comment::class);

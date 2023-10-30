@@ -9,11 +9,6 @@
                     <a href="{{ route('tweet.likes', ['user' => $user->username, 'tweet' => $tweet->id]) }}">
                         <b>{{ count($tweet->likes) }}</b> likes
                     </a>
-
-                    <a href="{{ route('tweet.retweets', ['user' => $user->username, 'tweet' => $tweet->id]) }}"
-                        class="ml-4">
-                        <b>{{ count($tweet->retweets) }}</b> retweets
-                    </a>
                 </div>
 
             </div>

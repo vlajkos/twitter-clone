@@ -43,10 +43,7 @@ class LikeSeeder extends Seeder
         $like = createLike(3, 7);
         $like = createLike(20, 9);
         $like = createLike(5, 8);
-        $like = createLike(30, 12);
-        $like = createLike(31, 15);
-        $like = createLike(32, 15);
-        $like = createLike(34, 16);
+     
 
         $like = createLike(1, 7);
         $like = createLike(2, 7);
@@ -57,23 +54,7 @@ class LikeSeeder extends Seeder
         $like = createLike(18, 7);
         $like = createLike(24, 7);
 
-        $like = createLike(1, 17);
-        $like = createLike(3, 19);
-        $like = createLike(20, 18);
-        $like = createLike(5, 15);
-        $like = createLike(30, 19);
-        $like = createLike(31, 19);
-        $like = createLike(32, 20);
-        $like = createLike(34, 20);
-
-        $like = createLike(1, 23);
-        $like = createLike(3, 23);
-        $like = createLike(20, 23);
-        $like = createLike(5, 23);
-        $like = createLike(30, 23);
-        $like = createLike(31, 23);
-        $like = createLike(32, 23);
-        $like = createLike(34, 23);
+       
 
         $like = createLike(2, 16);
         $like = createLike(4, 16);

@@ -6,14 +6,12 @@
             <img src="{{ asset('images/comment.png') }}" alt="" class="block">
         </button>
         <a href="">
-            @if ($tweet->tweet_id)
-                {{ count($tweet->originalTweet->comments) }}
-            @else
-                {{ count($tweet->comments) }}
-            @endif
+
+            {{ count($tweet->comments) }}
+
         </a>
     </div>
-    <h1>Test</h1>
+
 
     <form action="/like" method="POST" class="flex">
         @csrf
@@ -29,11 +27,9 @@
         </button>
 
         <a href="{{ '/' . $user->username . '/status/' . $tweet->id . '/likes' }}">
-            @if ($tweet->tweet_id)
-                {{ count($tweet->originalTweet->likes) }}
-            @else
-                {{ count($tweet->likes) }}
-            @endif
+
+            {{ count($tweet->likes) }}
+
         </a>
     </form>
 
@@ -46,13 +42,6 @@
         </button>
 
 
-        <a href="">
-            @if ($tweet->tweet_id)
-                {{ count($tweet->originalTweet->retweets) }}
-            @else
-                {{ count($tweet->retweets) }}
-            @endif
-        </a>
 
 
     </form>
