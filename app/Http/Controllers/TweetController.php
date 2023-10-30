@@ -50,13 +50,17 @@ class TweetController extends Controller
 
     public function indexHome()
     {
-        $loggedUser = request()->user();
-        $friendIds = $loggedUser->following->pluck('id');
-        $friendIds[] = $loggedUser->id;
+        $currentUser = request()->user();
+        $friendIds = $currentUser->following->pluck('id');
+        $friendIds[] = $currentUser->id;
         $tweetsFromFriends = Tweet::whereIn('user_id', $friendIds)
             ->orderBy('created_at', 'desc') // Chronological order, newest first
             ->get();
-        
+            $tweetsWithLikeStatus = $tweetsFromFriends->map(function ($tweet) use ($currentUser) {
+                $tweet['isLikedByCurrentUser'] = $currentUser ? $tweet->likedByUser($currentUser) : false;
+                return $tweet;
+            });
+       
         return view('home', ['tweets' => $tweetsFromFriends]);
     }
 
