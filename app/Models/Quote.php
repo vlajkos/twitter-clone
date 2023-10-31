@@ -29,9 +29,9 @@ class Quote extends Model
         return $this->hasMany(QuoteComment::class);
     }
 
-    public function tweet(): HasOne
+    public function tweet(): BelongsTo
     {
-        return $this->hasOne(Tweet::class);
+        return $this->belongsTo(Tweet::class);
     }
 
     public function likedByUser(User $user)

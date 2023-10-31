@@ -54,8 +54,15 @@
         @if (count($tweets))
             <div class="max-w-sm mx-auto relative">
                 @foreach ($tweets as $tweet)
-                    @php $user = $tweet->author @endphp
+                    <?php 
+                    $user = $tweet->author; 
+                    if($tweet->tweet_id) {
+                    ?>
+                    <x-quote.show :tweet=$tweet :user=$user />
+                    <?php } else {
+                    ?>
                     <x-tweet.show :tweet=$tweet :user=$user />
+                    <?php } ?>
                 @endforeach
 
             </div>
