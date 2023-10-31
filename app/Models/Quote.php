@@ -26,7 +26,7 @@ class Quote extends Model
 
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class, 'tweet_id');
+        return $this->hasMany(QuoteComment::class);
     }
 
     public function tweet(): HasOne

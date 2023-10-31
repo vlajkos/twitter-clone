@@ -63,7 +63,9 @@ class DatabaseSeeder extends Seeder
             LikeSeeder::class,
             CommentSeeder::class,
             CommentLikeSeeder::class,
-            NotificationSeeder::class
+            NotificationSeeder::class,
+            QuoteCommentSeeder::class,
+            QuoteCommentLikeSeeder::class
 
         ]);
 
