@@ -11,18 +11,19 @@ use App\Models\User;
 
 class QuoteLikeController extends Controller
 {
-    public function index(User $user, Quote $quote)
-    {
-        return view('tweet.likes', [
-            'user' => $user,
-            'users' => $quote->likes->pluck('user'),
-            'reaction' => 'likes'
-        ]);
+    // public function index(User $user, Quote $quote)
+    // {
+    //     return view('tweet.likes', [
+    //         'user' => $user,
+    //         'users' => $quote->likes->pluck('user'),
+    //         'reaction' => 'likes'
+    //     ]);
 
-    }
+    // }
 
     public function store(Request $request)
     {
+
 
         QuoteLike::create($request->all());
         $quote = Quote::find($request->quote_id);

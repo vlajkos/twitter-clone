@@ -8,6 +8,8 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RetweetController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\QuoteLikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
     //NOTIFICATIONS
     Route::get('/notifications', [NotificationController::class, 'show']);
-    //NOTIFICATIONS
+    
 
     Route::post('/tweet', [TweetController::class, 'store']);
     Route::get('/{user:username}', [TweetController::class, 'index']);
@@ -63,9 +65,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('{user:username}/status/{tweet}/likes', [LikeController::class, 'index'])->name('tweet.likes');
    
+    //QUOTE
+    Route::get('{user:username}/quote/{quote}', [QuoteController::class, 'show']);
 
 
+    //
     Route::post('/like', [LikeController::class, 'store']);
+    Route::post('/quoteLike', [QuoteLikeController::class, 'store']);
 
 
     Route::get('/{user:username}/followers', [FollowerController::class, 'listFollowers']);
